@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import sangi.gui.controls.*?>
+<AnchorPane prefHeight="540.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sangi.gui.multiclicker.MultiClickerController">
+   <children>
+      <TableView fx:id="pointTableView" layoutX="24.0" layoutY="52.0" prefHeight="160.0" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
+        <columns>
+          <TableColumn fx:id="pointColumn" prefWidth="310.0" resizable="false" text="Point" />
+        </columns>
+      </TableView>
+      <HotkeyButton fx:id="savePointKeyButton" defaultKey="F3" layoutX="14.0" layoutY="537.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="505.0" />
+      <HotkeyButton fx:id="startKeyButton" defaultKey="F1" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="440.0" />
+      <HotkeyButton fx:id="stopKeyButton" defaultKey="F2" layoutX="212.0" layoutY="503.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="440.0" />
+      <HotkeyButton fx:id="deletePointKeyButton" defaultKey="F4" layoutX="212.0" layoutY="537.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="505.0" />
+      <Label layoutX="64.0" layoutY="409.0" text="Start Key" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="418.0" />
+      <Label layoutX="249.0" layoutY="409.0" text="Stop Key" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="418.0" />
+      <Label layoutX="39.0" layoutY="483.0" text="Save Point Key" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="483.0" />
+      <Label layoutX="206.0" layoutY="483.0" text="Delete Last Point Key" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="483.0" />
+      <Label layoutX="122.0" layoutY="325.0" text="Mouse Movement" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="121.0" />
+      <RadioButton fx:id="linearToggle" layoutX="200.0" layoutY="351.0" mnemonicParsing="false" text="Linear">
+         <toggleGroup>
+            <ToggleGroup fx:id="mouseMovementGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="91.0" layoutY="351.0" mnemonicParsing="false" selected="true" text="Human-Like" toggleGroup="$mouseMovementGroup" AnchorPane.leftAnchor="91.0" />
+      <Label layoutX="24.0" layoutY="225.0" text="Point-to-Point Delay" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="224.0" layoutY="225.0" text="Click Delay" AnchorPane.rightAnchor="58.0" />
+      <IntegerSpinner fx:id="secondsPPDelaySpinner" editable="true" layoutX="25.0" layoutY="251.0" prefHeight="25.0" prefWidth="70.0" />
+      <IntegerSpinner fx:id="millisPPDelaySpinner" amountToStepValue="25" defaultValue="100" editable="true" layoutX="25.0" layoutY="286.0" minValue="100" prefHeight="25.0" prefWidth="70.0" />
+      <IntegerSpinner fx:id="secondsClickDelaySpinner" editable="true" layoutX="206.0" layoutY="251.0" prefHeight="25.0" prefWidth="70.0" />
+      <IntegerSpinner fx:id="millisClickDelaySpinner" amountToStepValue="25" defaultValue="100" editable="true" layoutX="206.0" layoutY="286.0" minValue="100" prefHeight="25.0" prefWidth="70.0" />
+      <Label layoutX="103.0" layoutY="255.0" text="s" />
+      <Label layoutX="103.0" layoutY="290.0" text="ms" />
+      <Label layoutX="282.0" layoutY="255.0" text="s" />
+      <Label layoutX="282.0" layoutY="290.0" text="ms" />
+   </children>
+</AnchorPane>
