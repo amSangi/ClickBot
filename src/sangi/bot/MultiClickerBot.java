@@ -36,14 +36,40 @@ public class MultiClickerBot {
             }
         }
 
-        // TODO: Finish impl
         private void startLinearClicks(){
-            // stub
+            while(readRunningStatus()){
+
+                for (Point point : points){
+                    if (!readRunningStatus()) {
+                        break;
+                    }
+
+                    robot.linearMoveTowards(point, ppDelay);
+                    robot.mouseClick(clickDelay);
+                }
+            }
         }
 
-        // TODO: Finish Implement
         private void startHumanLikeClicks(){
-            // stub
+            while(readRunningStatus()){
+
+                for (Point point : points){
+                    if (!readRunningStatus()) {
+                        break;
+                    }
+
+                    robot.humanMoveTowards(point, ppDelay);
+                    robot.mouseClick(clickDelay);
+                }
+            }
+        }
+
+        private boolean readRunningStatus(){
+            boolean shouldRun;
+            synchronized (runningLock){
+                shouldRun = isRunning;
+            }
+            return shouldRun;
         }
     }
 

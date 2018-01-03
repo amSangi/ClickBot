@@ -38,12 +38,7 @@ public class AutoClickerBot {
         }
 
         private void startClickCount(){
-            boolean shouldRun;
-            synchronized (runningLock){
-                shouldRun = isRunning;
-            }
-
-            while (clickCounter < clickCount && shouldRun){
+            while (clickCounter < clickCount && readRunningStatus()){
 
                 if (isRandomized){
                     robot.randomMouseClick(millisDelay);
@@ -56,33 +51,27 @@ public class AutoClickerBot {
                     clickCounter++;
                 }
 
-                synchronized (runningLock){
-                    shouldRun = isRunning;
-                }
             }
 
         }
 
         private void startClickingForever(){
-            boolean shouldRun;
-            synchronized (runningLock){
-                shouldRun = isRunning;
-            }
-
-            while (shouldRun){
-
+            while (readRunningStatus()){
                 if (isRandomized){
                     robot.randomMouseClick(millisDelay);
                 }
                 else {
                     robot.mouseClick(millisDelay);
                 }
-
-                synchronized (runningLock){
-                    shouldRun = isRunning;
-                }
             }
+        }
 
+        private boolean readRunningStatus(){
+            boolean shouldRun;
+            synchronized (runningLock){
+                shouldRun = isRunning;
+            }
+            return shouldRun;
         }
 
     }
