@@ -6,9 +6,9 @@
 <AnchorPane prefHeight="540.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sangi.gui.multiclicker.MultiClickerController">
    <children>
       <TableView fx:id="pointTableView" layoutX="24.0" layoutY="52.0" prefHeight="160.0" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
-        <columns>
-          <TableColumn fx:id="pointColumn" prefWidth="310.0" resizable="false" text="Point" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="pointColumn" prefWidth="310.0" resizable="false" text="Point" />
+         </columns>
       </TableView>
       <HotkeyButton fx:id="savePointKeyButton" defaultKey="F3" layoutX="14.0" layoutY="537.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="505.0" />
       <HotkeyButton fx:id="startKeyButton" defaultKey="F1" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" prefHeight="25.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="440.0" />

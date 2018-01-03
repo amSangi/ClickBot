@@ -12,24 +12,31 @@ public class SmartRobot extends Robot {
     private static final int[] RELEASE_RANDOMIZATION_RANGE = {5, 105};
     private static final int[] PRESS_RANDOMIZATION_RANGE = {10, 350};
 
-    // Math Constants
-    private static final double MIN_DISTANCE = 1;
-    private static final double SPEED = 10;
+    private static final int TOTAL_MOUSE_MOVEMENT_STEPS = 100;
 
 
     public SmartRobot() throws AWTException{
         super();
     }
 
-    // TODO: Finish impl
+    // TODO: Adjust TOTAL_MOUSE_MOVEMENT_STEPS and dt value to ensure smooth mouse movement
     public void linearMoveTowards(Point dest, int delay){
         System.out.println("Linear move towards called");
 
         Point currentPosition = MouseInfo.getPointerInfo().getLocation();
-        double distance = Math.hypot(dest.x - currentPosition.x, dest.y - currentPosition.y);
-        
 
-
+        double dx = (dest.x - currentPosition.x) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        double dy = (dest.y - currentPosition.y) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        double dt = (delay / 1000) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        for (int step = 1; step <= TOTAL_MOUSE_MOVEMENT_STEPS; step++){
+            try {
+                Thread.sleep((int) dt);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            this.mouseMove((int) (currentPosition.x + dx * step), (int) (currentPosition.y + dy * step));
+        }
     }
 
     // TODO: Finish impl
