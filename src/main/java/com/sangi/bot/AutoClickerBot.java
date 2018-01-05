@@ -1,4 +1,4 @@
-package sangi.bot;
+package main.java.com.sangi.bot;
 
 import java.awt.*;
 

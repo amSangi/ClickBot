@@ -1,4 +1,4 @@
-package sangi.gui.multiclicker;
+package main.java.com.sangi.gui.controllers;
 
 
 import javafx.beans.property.SimpleStringProperty;
@@ -9,8 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
-import sangi.gui.controls.HotkeyButton;
-import sangi.gui.controls.IntegerSpinner;
+import main.java.com.sangi.gui.controls.HotkeyButton;
+import main.java.com.sangi.gui.controls.IntegerSpinner;
 
 import java.awt.*;
 import java.util.List;
@@ -18,21 +18,21 @@ import java.util.List;
 public class MultiClickerController {
 
     // FXML Controls
-    public TableView<Point> pointTableView;
-    public TableColumn<Point, String> pointColumn;
-    public IntegerSpinner secondsPPDelaySpinner;
-    public IntegerSpinner millisPPDelaySpinner;
-    public IntegerSpinner secondsClickDelaySpinner;
-    public IntegerSpinner millisClickDelaySpinner;
-    public ToggleGroup mouseMovementGroup;
-    public Toggle linearToggle;
-    public HotkeyButton startKeyButton;
-    public HotkeyButton stopKeyButton;
-    public HotkeyButton savePointKeyButton;
-    public HotkeyButton deletePointKeyButton;
+    @FXML private TableView<Point> pointTableView;
+    @FXML private TableColumn<Point, String> pointColumn;
+    @FXML private IntegerSpinner secondsPPDelaySpinner;
+    @FXML private IntegerSpinner millisPPDelaySpinner;
+    @FXML private IntegerSpinner secondsClickDelaySpinner;
+    @FXML private IntegerSpinner millisClickDelaySpinner;
+    @FXML private ToggleGroup mouseMovementGroup;
+    @FXML private Toggle linearToggle;
+    @FXML private HotkeyButton startKeyButton;
+    @FXML private HotkeyButton stopKeyButton;
+    @FXML private HotkeyButton savePointKeyButton;
+    @FXML private HotkeyButton deletePointKeyButton;
 
-    @FXML
-    public void initialize(){
+
+    @FXML private void initialize(){
         pointColumn.setCellValueFactory(param -> {
             Point point = param.getValue();
             String pointToString = "(" + point.x + " , " + point.y + ")";

@@ -1,4 +1,4 @@
-package sangi.gui;
+package main.java.com.sangi;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,12 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main.java.com.sangi.gui.JavaFXKeyAdapter;
+import main.java.com.sangi.gui.controllers.MainController;
+import main.java.com.sangi.gui.handlers.AutoClickerInputHandler;
+import main.java.com.sangi.gui.handlers.MultiClickerInputHandler;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseMotionAdapter;
-import sangi.gui.multiclicker.MultiClickerController;
-import sangi.gui.multiclicker.MultiClickerInputHandler;
 
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -22,48 +24,58 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("multiclicker/MultiClickerGUI.fxml"));
-
-        // Init Variables
-        Parent root = loader.load();
-        MultiClickerController multiClickerController = loader.getController();
-        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
-
-        MultiClickerInputHandler multiClickerInputHandler = new MultiClickerInputHandler(multiClickerController);
-
-
         // Remove logging from jnativehook
         LogManager.getLogManager().reset();
         Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
         logger.setLevel(Level.OFF);
         logger.setUseParentHandlers(false);
 
-        // Setup global key listener
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/fxml/Main.fxml"));
+
+        // Init Variables
+        Parent root = loader.load();
+        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
+        MainController mainController = loader.getController();
+
+        MultiClickerInputHandler multiClickerInputHandler = new MultiClickerInputHandler(mainController.getMultiClickerController());
+        AutoClickerInputHandler autoClickerInputHandler = new AutoClickerInputHandler(mainController.getAutoClickerController());
+
+
         GlobalScreen.registerNativeHook();
 
         GlobalScreen.addNativeKeyListener(new JavaFXKeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 // Handle Starting/Stopping of bot and recording of new keys
-                multiClickerInputHandler.handleKeyPressed(keyEvent);
+                if (mainController.isMultiClickerSelected()){
+                    multiClickerInputHandler.handleKeyPressed(keyEvent);
+                }
+                else if (mainController.isAutoClickerSelected()){
+                    autoClickerInputHandler.handleKeyPressed(keyEvent);
+                }
 
             }
 
             @Override
             public void keyReleased(KeyEvent keyEvent){
                 // Handle Saving/Deleting of mouse points
-                multiClickerInputHandler.handleKeyReleased(keyEvent);
+                if (mainController.isMultiClickerSelected()) {
+                    multiClickerInputHandler.handleKeyReleased(keyEvent);
+                }
             }
         });
 
         GlobalScreen.addNativeMouseMotionListener(new NativeMouseMotionAdapter(){
             @Override
             public void nativeMouseMoved(NativeMouseEvent nativeMouseEvent) {
-                super.nativeMouseMoved(nativeMouseEvent);
                 // Update current position of mouse
-                multiClickerInputHandler.setCurrentMousePosition(nativeMouseEvent.getPoint());
+                if (mainController.isMultiClickerSelected()) {
+                    multiClickerInputHandler.setCurrentMousePosition(nativeMouseEvent.getPoint());
+                }
             }
         });
+
 
         // Close global key listener on application close
         primaryStage.setOnCloseRequest(event -> {
@@ -76,6 +88,8 @@ public class Main extends Application {
             System.runFinalization();
             System.exit(0);
         });
+
+
 
         primaryStage.setTitle("ClickBot");
         primaryStage.setScene(scene);

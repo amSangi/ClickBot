@@ -1,24 +1,25 @@
-package sangi.gui.autoclicker;
+package main.java.com.sangi.gui.controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
-import sangi.gui.controls.HotkeyButton;
-import sangi.gui.controls.IntegerSpinner;
+import main.java.com.sangi.gui.controls.HotkeyButton;
+import main.java.com.sangi.gui.controls.IntegerSpinner;
 
 public class AutoClickerController {
 
 
     // FXML Controls
-    public IntegerSpinner secondsDelaySpinner;
-    public IntegerSpinner millisDelaySpinner;
-    public IntegerSpinner clickCountSpinner;
-    public ToggleGroup countGroup;
-    public Toggle manualStopToggle;
-    public CheckBox clickRandomizationCheckBox;
-    public HotkeyButton startKeyButton;
-    public HotkeyButton stopKeyButton;
+    @FXML private IntegerSpinner secondsDelaySpinner;
+    @FXML private IntegerSpinner millisDelaySpinner;
+    @FXML private IntegerSpinner clickCountSpinner;
+    @FXML private ToggleGroup countGroup;
+    @FXML private Toggle manualStopToggle;
+    @FXML private CheckBox clickRandomizationCheckBox;
+    @FXML private HotkeyButton startKeyButton;
+    @FXML private HotkeyButton stopKeyButton;
 
 
 

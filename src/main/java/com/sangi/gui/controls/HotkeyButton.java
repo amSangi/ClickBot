@@ -1,4 +1,4 @@
-package sangi.gui.controls;
+package main.java.com.sangi.gui.controls;
 
 import javafx.beans.NamedArg;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package sangi.bot;
+package main.java.com.sangi.bot;
 
 import java.awt.*;
 import java.util.List;
@@ -84,6 +84,9 @@ public class MultiClickerBot {
         ppDelay = totalPPDelay;
         clickDelay = totalClickDelay;
         isLinear = isLinearTraversal;
+        if (points != null){
+            points.clear();
+        }
         points = pts;
         synchronized (runningLock){
             isRunning = true;
@@ -104,6 +107,7 @@ public class MultiClickerBot {
             isRunning = false;
         }
     }
+
 
 
 }

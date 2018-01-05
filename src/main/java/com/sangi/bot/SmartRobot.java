@@ -1,4 +1,4 @@
-package sangi.bot;
+package main.java.com.sangi.bot;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -25,9 +25,11 @@ public class SmartRobot extends Robot {
 
         Point currentPosition = MouseInfo.getPointerInfo().getLocation();
 
+        System.out.println("DELAY " + delay);
+
         double dx = (dest.x - currentPosition.x) / TOTAL_MOUSE_MOVEMENT_STEPS;
         double dy = (dest.y - currentPosition.y) / TOTAL_MOUSE_MOVEMENT_STEPS;
-        double dt = (delay / 1000) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        double dt = delay / TOTAL_MOUSE_MOVEMENT_STEPS;
         for (int step = 1; step <= TOTAL_MOUSE_MOVEMENT_STEPS; step++){
             try {
                 Thread.sleep((int) dt);

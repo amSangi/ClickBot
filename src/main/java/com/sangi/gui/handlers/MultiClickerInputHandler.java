@@ -1,15 +1,17 @@
-package sangi.gui.multiclicker;
+package main.java.com.sangi.gui.handlers;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import sangi.bot.MultiClickerBot;
-import sangi.gui.KeyHandler;
+import main.java.com.sangi.bot.MultiClickerBot;
+import main.java.com.sangi.gui.KeyHandler;
+import main.java.com.sangi.gui.controllers.MultiClickerController;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class MultiClickerInputHandler implements KeyHandler{
+public class MultiClickerInputHandler implements KeyHandler {
     private MultiClickerController controller;
     private MultiClickerBot multiClickerBot;
     private Point currentMousePosition;
@@ -50,7 +52,7 @@ public class MultiClickerInputHandler implements KeyHandler{
 
         // Handle Hotkey Presses
         if (startKeyPressed){
-            List<Point> points = controller.getPoints();
+            List<Point> points = new ArrayList<Point>(controller.getPoints());
             int ppSecondDelay = controller.getPPSeconds();
             int ppMillisDelay = controller.getPPMillis();
             int clickSecondDelay = controller.getClickSeconds();

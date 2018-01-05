@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="580.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="main.java.com.sangi.gui.controllers.MainController"
+         fx:id="tabPane">
+    <Tab text="MultiClicker" fx:id="multiClickerTab">
+    <fx:include fx:id="multiClicker" source="MultiClicker.fxml"/>
+    </Tab>
+    <Tab text="AutoClicker" fx:id="autoClickerTab">
+        <fx:include fx:id="autoClicker"  source="AutoClicker.fxml"/>
+    </Tab>
+</TabPane>
