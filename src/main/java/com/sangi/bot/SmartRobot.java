@@ -19,13 +19,8 @@ public class SmartRobot extends Robot {
         super();
     }
 
-    // TODO: Adjust TOTAL_MOUSE_MOVEMENT_STEPS and dt value to ensure smooth mouse movement
     public void linearMoveTowards(Point dest, int delay){
-        System.out.println("Linear move towards called");
-
         Point currentPosition = MouseInfo.getPointerInfo().getLocation();
-
-        System.out.println("DELAY " + delay);
 
         double dx = (dest.x - currentPosition.x) / TOTAL_MOUSE_MOVEMENT_STEPS;
         double dy = (dest.y - currentPosition.y) / TOTAL_MOUSE_MOVEMENT_STEPS;
@@ -43,7 +38,14 @@ public class SmartRobot extends Robot {
 
     // TODO: Finish impl
     public void humanMoveTowards(Point dest, int delay){
-        System.out.println("Human move towards called");
+        Point currentPosition = MouseInfo.getPointerInfo().getLocation();
+
+        double dx = (dest.x - currentPosition.x) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        double dy = (dest.y - currentPosition.y) / TOTAL_MOUSE_MOVEMENT_STEPS;
+        double dt = delay / TOTAL_MOUSE_MOVEMENT_STEPS;
+
+
+
     }
 
     public void mouseClick(int pressDelay){
