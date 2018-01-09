@@ -21,8 +21,8 @@ public class BezierPathGenerator {
         double startX = start.getX();
         double startY = start.getY();
 
-        double dx = destX - start.getX();
-        double dy = destY - start.getY();
+        double dx = destX - startX;
+        double dy = destY - startY;
 
         double r = ThreadLocalRandom.current().nextDouble(QUADRATIC_CONTROL_POINT_RANGE[0],
                                                          QUADRATIC_CONTROL_POINT_RANGE[1]);
@@ -54,8 +54,8 @@ public class BezierPathGenerator {
         double startX = start.getX();
         double startY = start.getY();
 
-        double dx = destX - start.getX();
-        double dy = destY - start.getY();
+        double dx = destX - startX;
+        double dy = destY - startY;
 
         double r = ThreadLocalRandom.current().nextDouble(CUBIC_CONTROL_POINT_ONE_RANGE[0],
                                                           CUBIC_CONTROL_POINT_ONE_RANGE[1]);
