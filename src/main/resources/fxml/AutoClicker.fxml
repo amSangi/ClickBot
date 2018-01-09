@@ -3,12 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import main.java.com.sangi.gui.controls.*?>
-<AnchorPane fx:id="autoClickerPane" prefHeight="245.0"
+<AnchorPane prefHeight="245.0"
             prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="main.java.com.sangi.gui.controllers.AutoClickerController">
 
-    <HotkeyButton fx:id="startKeyButton" defaultKey="F1" layoutX="26.0" layoutY="174.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="F1" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="200.0" />
+    <HotkeyButton fx:id="startKeyButton" defaultKey="F2" layoutX="26.0" layoutY="174.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="200.0" />
+    <HotkeyButton fx:id="stopKeyButton" defaultKey="F3" layoutX="207.0" layoutY="174.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="200.0" />
     <Label layoutX="65.0" layoutY="28.0" text="Delay" />
     <Label layoutX="241.0" layoutY="28.0" text="Count" />
     <RadioButton layoutX="192.0" layoutY="57.0" mnemonicParsing="false" text="clicks">
@@ -24,7 +25,6 @@
     <Label layoutX="121.0" layoutY="102.0" text="ms" AnchorPane.leftAnchor="121.0" />
     <Label layoutX="53.0" layoutY="175.0" text="Start Key" />
     <Label layoutX="233.0" layoutY="175.0" text="Stop Key" />
-    <HotkeyButton fx:id="stopKeyButton" defaultKey="F2" layoutX="207.0" layoutY="174.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="F2" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="200.0" />
     <IntegerSpinner fx:id="secondsDelaySpinner" amountToStepValue="1" defaultValue="0" editable="true" layoutX="46.0" layoutY="58.0" minValue="0" prefHeight="25.0" prefWidth="70.0" />
     <IntegerSpinner fx:id="millisDelaySpinner" amountToStepValue="50" defaultValue="100" editable="true" layoutX="46.0" layoutY="98.0" minValue="100" prefHeight="25.0" prefWidth="70.0" />
     <CheckBox fx:id="clickRandomizationCheckBox" layoutX="106.0" layoutY="147.0" mnemonicParsing="false" selected="true" text="Click Randomization" />

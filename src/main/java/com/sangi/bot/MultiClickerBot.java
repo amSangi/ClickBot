@@ -39,6 +39,8 @@ public class MultiClickerBot {
         private void startLinearClicks(){
             while(readRunningStatus()){
 
+                if (points == null || points.isEmpty()) { break; }
+
                 for (Point point : points){
                     if (!readRunningStatus()) {
                         break;
@@ -52,6 +54,8 @@ public class MultiClickerBot {
 
         private void startHumanLikeClicks(){
             while(readRunningStatus()){
+
+                if (points == null || points.isEmpty()) { break; }
 
                 for (Point point : points){
                     if (!readRunningStatus()) {
@@ -84,9 +88,6 @@ public class MultiClickerBot {
         ppDelay = totalPPDelay;
         clickDelay = totalClickDelay;
         isLinear = isLinearTraversal;
-        if (points != null){
-            points.clear();
-        }
         points = pts;
         synchronized (runningLock){
             isRunning = true;

@@ -18,7 +18,7 @@ import java.util.List;
 public class MultiClickerController {
 
     // FXML Controls
-    @FXML private TableView<Point> pointTableView;
+    @FXML private TableView<Point> pointsTableView;
     @FXML private TableColumn<Point, String> pointColumn;
     @FXML private IntegerSpinner secondsPPDelaySpinner;
     @FXML private IntegerSpinner millisPPDelaySpinner;
@@ -114,11 +114,11 @@ public class MultiClickerController {
     /******  Table Methods *****/
 
     public void addNewPoint(Point point){
-        pointTableView.getItems().add(point);
+        pointsTableView.getItems().add(point);
     }
 
     public void removeLastPoint(){
-        ObservableList<Point> points = pointTableView.getItems();
+        ObservableList<Point> points = pointsTableView.getItems();
         int size = points.size();
         if (size > 0){
             points.remove(points.size() - 1);
@@ -126,7 +126,7 @@ public class MultiClickerController {
     }
 
     public List<Point> getPoints(){
-        return pointTableView.getItems();
+        return pointsTableView.getItems();
     }
 
 

@@ -3,17 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import main.java.com.sangi.gui.controls.*?>
-<AnchorPane fx:id="multiClickerPane" prefHeight="540.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.sangi.gui.controllers.MultiClickerController">
+<AnchorPane prefHeight="540.0" prefWidth="340.0"
+            xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.java.com.sangi.gui.controllers.MultiClickerController">
 
-      <TableView fx:id="pointTableView" layoutX="24.0" layoutY="52.0" prefHeight="175.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="pointsTableView" layoutX="24.0" layoutY="52.0" prefHeight="175.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
          <columns>
-            <TableColumn fx:id="pointColumn" prefWidth="310.0" resizable="false" text="Point" />
+            <TableColumn fx:id="pointColumn" prefWidth="310.0" resizable="false" text="Points" />
          </columns>
       </TableView>
-      <HotkeyButton fx:id="savePointKeyButton" defaultKey="F3" layoutX="14.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" />
-      <HotkeyButton fx:id="startKeyButton" defaultKey="F1" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" />
-      <HotkeyButton fx:id="stopKeyButton" defaultKey="F2" layoutX="212.0" layoutY="503.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" />
-      <HotkeyButton fx:id="deletePointKeyButton" defaultKey="F4" layoutX="212.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" />
+      <HotkeyButton fx:id="startKeyButton" defaultKey="F2" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" />
+      <HotkeyButton fx:id="stopKeyButton" defaultKey="F3" layoutX="212.0" layoutY="503.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" />
+      <HotkeyButton fx:id="savePointKeyButton" defaultKey="F4" layoutX="14.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" />
+      <HotkeyButton fx:id="deletePointKeyButton" defaultKey="F5" layoutX="212.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="15.0" />
       <Label layoutX="64.0" layoutY="409.0" text="Start Key" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="55.0" />
       <Label layoutX="249.0" layoutY="409.0" text="Stop Key" AnchorPane.bottomAnchor="115.0" AnchorPane.rightAnchor="55.0" />
       <Label layoutX="39.0" layoutY="483.0" text="Save Point Key" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="39.0" />
