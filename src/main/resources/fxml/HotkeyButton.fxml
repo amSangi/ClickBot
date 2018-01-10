@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import main.java.com.sangi.gui.controls.HotkeyButton?>
+<?import main.java.sangi.gui.controls.HotkeyButton?>
 <HotkeyButton mnemonicParsing="false" text="Button" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" />

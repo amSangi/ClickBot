@@ -1,10 +1,10 @@
-package main.java.com.sangi.gui.handlers;
+package main.java.sangi.gui.handlers;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import main.java.com.sangi.bot.MultiClickerBot;
-import main.java.com.sangi.gui.KeyHandler;
-import main.java.com.sangi.gui.controllers.MultiClickerController;
+import main.java.sangi.bot.MultiClickerBot;
+import main.java.sangi.gui.KeyHandler;
+import main.java.sangi.gui.controllers.MultiClickerController;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -63,16 +63,9 @@ public class MultiClickerInputHandler implements KeyHandler {
             int totalClickDelay = (1000 * clickSecondDelay) + clickMillisDelay;
 
             multiClickerBot.beginMultiClick(points, totalPPDelay, totalClickDelay, isLinearTraversal);
-
-            System.out.println("Starting multiclick");
-            System.out.println(points.toString());
-            System.out.println("Point to point delay: " + totalPPDelay);
-            System.out.println("Click delay: " + totalClickDelay);
-            System.out.println("Linear Traversal: " + isLinearTraversal);
         }
         else if (stopKeyPressed){
             multiClickerBot.stopMultiClick();
-            System.out.println("Stopping multiclick");
         }
 
     }
@@ -85,11 +78,9 @@ public class MultiClickerInputHandler implements KeyHandler {
 
         if (saveKeyPressed){
             controller.addNewPoint(currentMousePosition);
-            System.out.println("Saving point: " + currentMousePosition.toString());
         }
         else if (deleteKeyPressed){
             controller.removeLastPoint();
-            System.out.println("Deleting last point");
         }
     }
 

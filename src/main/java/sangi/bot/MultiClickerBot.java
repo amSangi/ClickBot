@@ -1,4 +1,4 @@
-package main.java.com.sangi.bot;
+package main.java.sangi.bot;
 
 import java.awt.*;
 import java.util.List;

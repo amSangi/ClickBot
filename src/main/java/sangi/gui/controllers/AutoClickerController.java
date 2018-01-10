@@ -1,12 +1,12 @@
-package main.java.com.sangi.gui.controllers;
+package main.java.sangi.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
-import main.java.com.sangi.gui.controls.HotkeyButton;
-import main.java.com.sangi.gui.controls.IntegerSpinner;
+import main.java.sangi.gui.controls.HotkeyButton;
+import main.java.sangi.gui.controls.IntegerSpinner;
 
 public class AutoClickerController {
 

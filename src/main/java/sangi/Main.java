@@ -1,4 +1,4 @@
-package main.java.com.sangi;
+package main.java.sangi;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,10 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import main.java.com.sangi.gui.JavaFXKeyAdapter;
-import main.java.com.sangi.gui.controllers.MainController;
-import main.java.com.sangi.gui.handlers.AutoClickerInputHandler;
-import main.java.com.sangi.gui.handlers.MultiClickerInputHandler;
+import main.java.sangi.gui.JavaFXKeyAdapter;
+import main.java.sangi.gui.controllers.MainController;
+import main.java.sangi.gui.handlers.AutoClickerInputHandler;
+import main.java.sangi.gui.handlers.MultiClickerInputHandler;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseEvent;
@@ -31,7 +31,7 @@ public class Main extends Application {
         logger.setUseParentHandlers(false);
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/fxml/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Main.fxml"));
 
         // Init Variables
         Parent root = loader.load();

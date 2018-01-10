@@ -1,8 +1,9 @@
-package main.java.com.sangi.bot;
+package main.java.sangi.bot;
 
 import java.awt.*;
 
 public class AutoClickerBot {
+
     // Constants
     private static final int DEFAULT_MILLIS_DELAY = 100;
     private static final int DEFAULT_CLICK_VAL = 0;

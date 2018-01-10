@@ -1,4 +1,4 @@
-package main.java.com.sangi.bot;
+package main.java.sangi.bot;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -15,11 +15,6 @@ public class SmartRobot extends Robot {
     // Linear Move Constants
     private static final int POSITION_VARIANCE = 2;
     private static final int MOUSE_MOVEMENT_STEPS = 100;
-
-    // Human-Like Move Constants
-    private static final double OVERSHOOT_DELAY_FACTOR = 0.75;
-    private static final double NEW_DEST_DELAY_FACTOR = 1 - OVERSHOOT_DELAY_FACTOR;
-    private static final double[] OVERSHOOT_FACTOR_RANGE = {1.0, 1.05};
 
     private final BezierPathGenerator pathGenerator = new BezierPathGenerator();
 
@@ -96,76 +91,32 @@ public class SmartRobot extends Robot {
     /**
      *  Features of human-like mouse movements:
      *      - Small position variance (i.e. final resting point is slightly different each time)
-     *      - Overshooting of points
      *      - Non-linear movements
      */
     public void humanMoveTowards(Point dest, int delay){
         Point start = MouseInfo.getPointerInfo().getLocation();
+        Point newDest = generatePointVariant(dest);
 
-        // New destination
-        Point newDest = generatePositionalVariant(dest);
+        java.util.List<Point> path = pathGenerator.generateCubicBezierCurve(start, newDest);
 
-        // Overshoot position
-        Point overshootPosition = generateOvershootPosition(start, dest);
+        double delayPerPoint = delay / path.size();
 
-        // Generate paths to each point
-        java.util.List<Point> pointsToOvershoot = pathGenerator.generateCubicBezierCurve(start, overshootPosition);
-        java.util.List<Point> pointsToNewDest = pathGenerator.generateQuadraticBezierCurve(overshootPosition, newDest);
-
-
-        int overshootPathSize = pointsToOvershoot.size();
-        int newDestPathSize= pointsToNewDest.size();
-
-        int totalPoints = overshootPathSize + newDestPathSize;
-
-        // Movement Delay
-        double overshootDelay = delay / (OVERSHOOT_DELAY_FACTOR * totalPoints);
-        double newDestDelay = delay / (NEW_DEST_DELAY_FACTOR * totalPoints);
-
-
-        for (Point p : pointsToOvershoot) {
+        for (Point p : path){
             this.mouseMove(p.x, p.y);
             try {
-                Thread.sleep((long) overshootDelay);
+                Thread.sleep((long) delayPerPoint);
             }
             catch (InterruptedException e){
-                System.out.println("Failed to wait before next move - overshoot");
+                System.out.println("Failed to wait before next move");
             }
         }
-
-        for (Point p : pointsToNewDest) {
-            this.mouseMove(p.x, p.y);
-            try {
-                Thread.sleep((long) newDestDelay);
-            }
-            catch (InterruptedException e){
-                System.out.println("Failed to wait before next move - overshoot correction");
-            }
-        }
-
     }
 
-    private Point generatePositionalVariant(Point p){
+    private Point generatePointVariant(Point p){
         int newX = p.x + ThreadLocalRandom.current().nextInt(-POSITION_VARIANCE, POSITION_VARIANCE);
         int newY = p.y + ThreadLocalRandom.current().nextInt(-POSITION_VARIANCE, POSITION_VARIANCE);
         return new Point(newX, newY);
     }
 
-    private Point generateOvershootPosition(Point start, Point dest){
-
-        double startX = start.getX();
-        double startY = start.getY();
-
-        double dx = dest.getX() - startX;
-        double dy = dest.getY() - startY;
-
-        // Random Overshoot percentage
-        double newX = startX + dx * ThreadLocalRandom.current().nextDouble(OVERSHOOT_FACTOR_RANGE[0],
-                                                                           OVERSHOOT_FACTOR_RANGE[1]);
-        double newY = startY + dy *  ThreadLocalRandom.current().nextDouble(OVERSHOOT_FACTOR_RANGE[0],
-                                                                            OVERSHOOT_FACTOR_RANGE[1]);
-
-        return new Point((int) Math.round(newX), (int) Math.round(newY));
-    }
 
 }

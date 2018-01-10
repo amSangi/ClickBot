@@ -1,4 +1,4 @@
-package main.java.com.sangi.gui;
+package main.java.sangi.gui;
 
 
 import javafx.scene.input.KeyEvent;

@@ -1,10 +1,10 @@
-package main.java.com.sangi.gui.handlers;
+package main.java.sangi.gui.handlers;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import main.java.com.sangi.bot.AutoClickerBot;
-import main.java.com.sangi.gui.KeyHandler;
-import main.java.com.sangi.gui.controllers.AutoClickerController;
+import main.java.sangi.bot.AutoClickerBot;
+import main.java.sangi.gui.KeyHandler;
+import main.java.sangi.gui.controllers.AutoClickerController;
 
 import java.awt.*;
 
