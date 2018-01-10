@@ -6,16 +6,20 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SmartRobot extends Robot {
 
-    // Constants
+    // Click Constants
     private static final int MOUSE_BUTTON = InputEvent.BUTTON1_DOWN_MASK;
     private static final int RELEASE_DELAY = 100;
     private static final int[] RELEASE_RANDOMIZATION_RANGE = {5, 105};
     private static final int[] PRESS_RANDOMIZATION_RANGE = {10, 350};
 
-    private static final int MOUSE_MOVEMENT_STEPS = 100;
-    private static final int OVERSHOOT_CORRECTION_STEPS = 25;
+    // Linear Move Constants
     private static final int POSITION_VARIANCE = 2;
-    private static final double[] OVERSHOOT_FACTOR_RANGE = {1.05, 1.15};
+    private static final int MOUSE_MOVEMENT_STEPS = 100;
+
+    // Human-Like Move Constants
+    private static final double OVERSHOOT_DELAY_FACTOR = 0.75;
+    private static final double NEW_DEST_DELAY_FACTOR = 1 - OVERSHOOT_DELAY_FACTOR;
+    private static final double[] OVERSHOOT_FACTOR_RANGE = {1.0, 1.05};
 
     private final BezierPathGenerator pathGenerator = new BezierPathGenerator();
 
@@ -79,13 +83,13 @@ public class SmartRobot extends Robot {
         double dy = (dest.y - start.y) / MOUSE_MOVEMENT_STEPS;
         double dt = delay / MOUSE_MOVEMENT_STEPS;
         for (int step = 1; step <= MOUSE_MOVEMENT_STEPS; step++){
+            this.mouseMove((int) (start.x + dx * step), (int) (start.y + dy * step));
             try {
                 Thread.sleep((long) dt);
             }
             catch (InterruptedException e){
                 System.out.println("Failed to wait before next mouse move");
             }
-            this.mouseMove((int) (start.x + dx * step), (int) (start.y + dy * step));
         }
     }
 
@@ -98,24 +102,46 @@ public class SmartRobot extends Robot {
     public void humanMoveTowards(Point dest, int delay){
         Point start = MouseInfo.getPointerInfo().getLocation();
 
-        // Very Small Final Position Variance
+        // New destination
         Point newDest = generatePositionalVariant(dest);
-        System.out.println("New Destination: " + newDest.toString());
-        // Overshoot Position
+
+        // Overshoot position
         Point overshootPosition = generateOvershootPosition(start, dest);
-        System.out.println("Overshoot position: " + overshootPosition.toString());
 
-        // Velocity
-        final int totalSteps = MOUSE_MOVEMENT_STEPS + OVERSHOOT_CORRECTION_STEPS;
-        double dx = (dest.x - start.x) / totalSteps;
-        double dy = (dest.y - start.y) / totalSteps;
-        double dt = delay / totalSteps;
-
-        java.util.List<Point> pointsToOverShoot = pathGenerator.generateCubicBezierCurve(start, overshootPosition);
+        // Generate paths to each point
+        java.util.List<Point> pointsToOvershoot = pathGenerator.generateCubicBezierCurve(start, overshootPosition);
         java.util.List<Point> pointsToNewDest = pathGenerator.generateQuadraticBezierCurve(overshootPosition, newDest);
 
-        // TODO: Finish impl
-        
+
+        int overshootPathSize = pointsToOvershoot.size();
+        int newDestPathSize= pointsToNewDest.size();
+
+        int totalPoints = overshootPathSize + newDestPathSize;
+
+        // Movement Delay
+        double overshootDelay = delay / (OVERSHOOT_DELAY_FACTOR * totalPoints);
+        double newDestDelay = delay / (NEW_DEST_DELAY_FACTOR * totalPoints);
+
+
+        for (Point p : pointsToOvershoot) {
+            this.mouseMove(p.x, p.y);
+            try {
+                Thread.sleep((long) overshootDelay);
+            }
+            catch (InterruptedException e){
+                System.out.println("Failed to wait before next move - overshoot");
+            }
+        }
+
+        for (Point p : pointsToNewDest) {
+            this.mouseMove(p.x, p.y);
+            try {
+                Thread.sleep((long) newDestDelay);
+            }
+            catch (InterruptedException e){
+                System.out.println("Failed to wait before next move - overshoot correction");
+            }
+        }
 
     }
 
