@@ -12,8 +12,7 @@ public class SmartRobot extends Robot {
     private static final int[] RELEASE_RANDOMIZATION_RANGE = {5, 105};
     private static final int[] PRESS_RANDOMIZATION_RANGE = {10, 350};
 
-    // Linear Move Constants
-    private static final int POSITION_VARIANCE = 2;
+    private static final int POSITION_VARIANCE = 3;
     private static final int MOUSE_MOVEMENT_STEPS = 100;
 
     private final BezierPathGenerator pathGenerator = new BezierPathGenerator();

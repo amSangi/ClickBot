@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.java.sangi.gui.JavaFXKeyAdapter;
@@ -15,6 +17,7 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseMotionAdapter;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -34,15 +37,32 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Main.fxml"));
 
         // Init Variables
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        }
+        catch (IOException e){
+            generateError(e.getMessage());
+        }
+
         Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
         MainController mainController = loader.getController();
 
-        MultiClickerInputHandler multiClickerInputHandler = new MultiClickerInputHandler(mainController.getMultiClickerController());
-        AutoClickerInputHandler autoClickerInputHandler = new AutoClickerInputHandler(mainController.getAutoClickerController());
+        final MultiClickerInputHandler multiClickerInputHandler = new MultiClickerInputHandler(mainController.getMultiClickerController());
+        final AutoClickerInputHandler autoClickerInputHandler = new AutoClickerInputHandler(mainController.getAutoClickerController());
 
-
-        GlobalScreen.registerNativeHook();
+        try {
+            GlobalScreen.registerNativeHook();
+        }
+        catch (NativeHookException e){
+            if (e.getCode() == NativeHookException.DARWIN_AXAPI_DISABLED){
+                String message = "Apple access for assistive devices is disabled. Please enable access and relaunch the program.";
+                generateError(message);
+            }
+            else {
+                generateError(e.getMessage());
+            }
+        }
 
         GlobalScreen.addNativeKeyListener(new JavaFXKeyAdapter() {
             @Override
@@ -84,12 +104,11 @@ public class Main extends Application {
             }
             catch (NativeHookException ex) {
                 ex.printStackTrace();
+                System.exit(1);
             }
             System.runFinalization();
             System.exit(0);
         });
-
-
 
         primaryStage.setTitle("ClickBot");
         primaryStage.setScene(scene);
@@ -97,6 +116,13 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private void generateError(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.CLOSE);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.CLOSE) {
+            System.exit(1);
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -33,20 +33,18 @@ public class BezierPathGenerator {
         float r2 = (float) ThreadLocalRandom.current().nextDouble(CONTROL_POINT_TWO_RANGE[0],
                                                                   CONTROL_POINT_TWO_RANGE[1]);
 
-        // Generate random points on line connecting start and dest
+        // Generate random points on line connecting endpoints
         float randPointX = startX + dx * r;
         float randPointY = startY + dy * r;
         float randPointX2 = startX + dx * r2;
         float randPointY2 = startY + dy * r2;
 
-        // Used to ensure control points are not always on the same side of end points
+        // Used to ensure control points are not always on the same side of endpoints
         int randSign = ThreadLocalRandom.current().nextBoolean() ? 1 : -1;
 
         // Generate random control points
         float p1X = randPointX + (randSign * -1 * CONTROL_POINT_RAD * (-dy));
         float p1Y = randPointY + (randSign * -1 * CONTROL_POINT_RAD * dx);
-
-        // Desire three changes in direction, so we subtract
         float p2X = randPointX2 + (randSign * CONTROL_POINT_RAD * (-dy));
         float p2Y = randPointY2 + (randSign * CONTROL_POINT_RAD * dx);
 

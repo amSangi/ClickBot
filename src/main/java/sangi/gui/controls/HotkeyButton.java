@@ -13,18 +13,27 @@ public class HotkeyButton extends Button {
     public HotkeyButton(@NamedArg("defaultKey") KeyCode defaultKey){
         super();
         this.key = defaultKey;
-        this.setText(keyToString());
+        this.setText(key.getName());
 
         this.setOnAction(event -> {
             if (isRecording){
                 isRecording = false;
-                setText(keyToString());
+                setText(key.getName());
             }
             else {
                 isRecording = true;
                 setText("Recording");
             }
         });
+
+        this.setOnMouseEntered(event -> {
+            if (!isRecording) { setText("Click to edit"); }
+        });
+
+        this.setOnMouseExited(event -> {
+            if (!isRecording) { setText(key.getName()); }
+        });
+
     }
 
     public KeyCode getKey(){
@@ -39,9 +48,6 @@ public class HotkeyButton extends Button {
         return isRecording;
     }
 
-    private String keyToString(){
-        return key.getName();
-    }
 
 
 }

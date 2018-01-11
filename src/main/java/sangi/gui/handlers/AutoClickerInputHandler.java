@@ -3,12 +3,11 @@ package main.java.sangi.gui.handlers;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import main.java.sangi.bot.AutoClickerBot;
-import main.java.sangi.gui.KeyHandler;
 import main.java.sangi.gui.controllers.AutoClickerController;
 
 import java.awt.*;
 
-public class AutoClickerInputHandler implements KeyHandler{
+public class AutoClickerInputHandler {
     private AutoClickerController controller;
     private AutoClickerBot autoClickerBot;
 
@@ -17,7 +16,6 @@ public class AutoClickerInputHandler implements KeyHandler{
         autoClickerBot = new AutoClickerBot();
     }
 
-    @Override
     public void handleKeyPressed(KeyEvent keyEvent) {
         KeyCode keyCode = keyEvent.getCode();
 
