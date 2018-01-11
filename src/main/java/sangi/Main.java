@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.java.sangi.gui.JavaFXKeyAdapter;
@@ -112,6 +113,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("ClickBot");
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("main/resources/ClickBotIcon.png"));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
