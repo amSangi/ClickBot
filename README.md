@@ -6,6 +6,13 @@ Bezier curve to simulate a more human-like movement.
 ## Download ##
 Binary Distrubtion can be found in the releases section
 
+## Screenshots ##
+#### Multiclicker ####
+![Multiclicker_SS](/screenshots/Multiclicker_SS.png)
+
+#### Autoclicker ####
+![Autoclicker_SS](/screenshots/Autoclicker_SS.png)
+
 ## Software and Hardware Requirements ## 
 This application uses jnativehook by kwhat and therefore has the same requirements
 * Java 1.5 - 1.8
