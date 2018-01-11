@@ -4,7 +4,7 @@ recorded by the user on the screen and moving to each point and clicking. The pa
 Bezier curve to simulate a more human-like movement. 
 
 ## Download ##
-Binary Distrubtion can be found in the releases section
+Binary Distrubtion can be found in the [releases](https://github.com/amSangi/ClickBot/releases/) section
 
 ## Screenshots ##
 #### Multiclicker ####
