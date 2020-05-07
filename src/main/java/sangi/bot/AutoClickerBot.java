@@ -5,7 +5,7 @@ import java.awt.*;
 public class AutoClickerBot {
 
     // Constants
-    private static final int DEFAULT_MILLIS_DELAY = 100;
+    private static final int DEFAULT_MILLIS_DELAY = 0;
     private static final int DEFAULT_CLICK_VAL = 0;
 
     // Member Variables

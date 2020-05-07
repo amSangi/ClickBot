@@ -8,7 +8,7 @@ public class SmartRobot extends Robot {
 
     // Click Constants
     private static final int MOUSE_BUTTON = InputEvent.BUTTON1_DOWN_MASK;
-    private static final int RELEASE_DELAY = 100;
+    private static final int RELEASE_DELAY = 0;
     private static final int[] RELEASE_RANDOMIZATION_RANGE = {5, 105};
     private static final int[] PRESS_RANDOMIZATION_RANGE = {10, 350};
 
